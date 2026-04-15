@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "cmd /c npx",
+      "args": ["-y", "@anthropic/mcp-sequential-thinking"],
+      "env": {}
+    }
+  }
+}
