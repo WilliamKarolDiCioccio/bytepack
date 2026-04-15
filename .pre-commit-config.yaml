@@ -1,0 +1,39 @@
+repos:
+  # Pre-commit hooks for general code hygiene
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+    - id: custom-code-cleanup
+      name: Clean AI Characters
+      entry: python3 ./scripts/code_cleanup.py
+      language: python
+      files: \.(py|js|ts|c|cpp|cxx|h|hpp|hxx)$
+
+  # Codespell for spellchecking commit messages
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        name: spellcheck commit message
+        stages: [commit-msg]
+
+  # CMake format
+  - repo: https://github.com/cheshirekow/cmake-format-precommit
+    rev: v0.6.10
+    hooks:
+    - id: cmake-format
+
+  # Clang-format and Clang-tidy for C/C++ code
+  - repo: https://github.com/cpp-linter/cpp-linter-hooks
+    rev: v1.1.11
+    hooks:
+      - id: clang-format
+        files: ^(support|codex|codex_workspace|docsgen|codegen|luau_environment|linter|linter_lsp_server|linter_cli|telemetry|tools)/
+        args: [--style=file, -i]
